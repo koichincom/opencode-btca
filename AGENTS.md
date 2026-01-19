@@ -3,6 +3,7 @@ AGENTS
 Purpose
 - This file gives agentic coding agents (including automated assistants) a concise, actionable guide for building, testing, linting, and editing this repository.
 - Follow the repo's existing patterns (TypeScript, Bun usage, named exports) and the Git safety rules in this workspace when making changes.
+- Maintain an objective, impersonal voice throughout this document and other agent-written content: avoid using `I` or `we` as the subject.
 
 Repository snapshot
 - Primary language: TypeScript (tools live under `.config/opencode/`).
