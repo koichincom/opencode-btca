@@ -9,7 +9,7 @@ Scripts and configuration for integrating [Better Context (btca)](https://btca.d
 
 ## Contributions
 
-### `.config/opencode/tools/btca.ts`
+### [`.config/opencode/tools/btca.ts`](.config/opencode/tools/btca.ts)
 
 Allow OpenCode agents to invoke btca commands as standard command-line tools (for example, `ls` or `grep`). The tool supports these btca CLI commands:
 
@@ -20,7 +20,7 @@ Allow OpenCode agents to invoke btca commands as standard command-line tools (fo
 - `btca config resources remove`
 - `btca clear`
 
-> [Warning]
+> [!Warning]
 > The `btca ask` tool may call itself recursively and cause an infinite loop. Report occurrences at [this issue](https://github.com/koichincom/opencode-btca/issues/1). Prevention measures are in progress.
 
 Reference:
@@ -28,7 +28,7 @@ Reference:
 - [OpenCode Custom Tools](https://opencode.ai/docs/custom-tools/)
 - [Better Context Commands](https://btca.dev/commands)
 
-### `.config/opencode/opencode.jsonc`
+### [`.config/opencode/opencode.jsonc`](.config/opencode/opencode.jsonc)
 
 Set permissions for the btca tools. Explicit permissions are recommended for destructive commands such as `btca clear`, although they are not strictly required.
 
