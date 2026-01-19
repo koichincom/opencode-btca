@@ -16,6 +16,10 @@ Let OpenCode agents call btca commands just like any other command line tools (e
 > [!WARNING]
 > `btca ask` with multi-sources should be supported by this script, but currently has some issues, and probably on the btca side. Please use single source for now.
 
+Reference: [OpenCode Custom Tools](https://opencode.ai/docs/custom-tools/)
+
 ## [opencode/opencode.jsonc](.config/opencode/opencode.jsonc)
 
 Set permissions for the btca tools. This isn't strictly necessary, but it's for requiring explicit permissions for destructive tools like `btca clear`.
+
+Reference: [OpenCode Permissions](https://opencode.ai/docs/permissions/)
