@@ -1,21 +1,21 @@
 # OpenCode Btca
 
-Scripts and configuration for integrating Better Context (also known as btca) with OpenCode. Install and configure Better Context and OpenCode first, then merge the files in this repository into your own configuration as needed.
+Scripts and configuration for integrating Better Context (btca) with OpenCode. Better Context and OpenCode must be installed and configured prior to use. Merge files from this repository into project configurations as needed.
 
 ## Files
 
 ### `.config/opencode/tools/btca.ts`
 
-Allow OpenCode agents to call btca commands like standard command-line tools (for example, `ls` or `grep`). The tool supports the following btca CLI commands:
+Allow OpenCode agents to invoke btca commands as standard command-line tools (for example, `ls` or `grep`). The tool supports these btca CLI commands:
 
-- `btca ask` — supports single and multiple sources
-- `btca config model` — the CLI currently doesn't exit automatically, so a timeout is used as a workaround
+- `btca ask` - supports single and multiple sources
+- `btca config model` - the CLI currently does not exit automatically, so a timeout is used as a workaround
 - `btca config resources list`
 - `btca config resources add`
 - `btca config resources remove`
 - `btca clear`
 
-> Warning: The `btca ask` tool may call itself recursively and cause an infinite loop. If you encounter this, please report it in [this issue](https://github.com/koichincom/opencode-btca/issues/1). We are working on prevention measures.
+> Warning: The `btca ask` tool may call itself recursively and cause an infinite loop. Report occurrences at [this issue](https://github.com/koichincom/opencode-btca/issues/1). Prevention measures are in progress.
 
 Reference:
 
@@ -24,7 +24,7 @@ Reference:
 
 ### `.config/opencode/opencode.jsonc`
 
-Set permissions for the btca tools. This isn't strictly required, but we recommend requiring explicit permissions for destructive commands such as `btca clear`.
+Set permissions for the btca tools. Explicit permissions are recommended for destructive commands such as `btca clear`, although they are not strictly required.
 
 Reference:
 
@@ -32,6 +32,6 @@ Reference:
 
 ## Contributions
 
-- Please open issues or pull requests for bug reports, feature requests, or improvements.
-- Create your branch from `dev` and target `dev` when opening a pull request.
-- If you find this project helpful, please consider starring the repository.
+- Open issues or pull requests for bug reports, feature requests, or improvements.
+- Create branches from `dev` and target `dev` when opening a pull request.
+- Consider starring the repository if it is useful.
