@@ -20,7 +20,8 @@ Allow OpenCode agents to invoke btca commands as standard command-line tools (fo
 - `btca config resources remove`
 - `btca clear`
 
-> Warning: The `btca ask` tool may call itself recursively and cause an infinite loop. Report occurrences at [this issue](https://github.com/koichincom/opencode-btca/issues/1). Prevention measures are in progress.
+> [Warning]
+> The `btca ask` tool may call itself recursively and cause an infinite loop. Report occurrences at [this issue](https://github.com/koichincom/opencode-btca/issues/1). Prevention measures are in progress.
 
 Reference:
 
