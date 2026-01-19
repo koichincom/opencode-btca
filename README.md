@@ -27,4 +27,12 @@ Reference:
 
 Set permissions for the btca tools. This isn't strictly necessary, but it's recommended to require explicit permissions for destructive tools like `btca clear`.
 
-Reference: [OpenCode Permissions](https://opencode.ai/docs/permissions/)
+Reference:
+
+- [OpenCode Permissions](https://opencode.ai/docs/permissions/)
+
+## Contributions
+
+- Please open issues or pull requests for bug reports, feature requests, or improvements.
+- **Create your branch from `dev` branch** and target `dev` branch when opening a pull request.
+- If you find this project useful, consider starring the repository.
