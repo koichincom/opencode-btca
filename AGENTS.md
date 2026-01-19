@@ -113,7 +113,7 @@ Git / commit etiquette for agents
   - Ask the human operator for clarification, or
   - Stage only the files you changed and include a focused commit message.
 - Commit message style (conventional): `feat(tool): add X`, `fix(tool): handle Y`, `docs(readme): update`.
-- Create branches from `dev` and open PRs targeting `dev` (this repo uses `dev` as its working branch).
+- Commit directly to `dev` (this repo uses `dev` as its main working branch).
 
 Cursor / Copilot rules
 - No Cursor rules were found in `.cursor/rules/` or `.cursorrules` in the repository root when this file was generated.
