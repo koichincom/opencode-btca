@@ -2,6 +2,18 @@
 
 Scripts and configuration for integrating Better Context (btca) with OpenCode. Better Context and OpenCode must be installed and configured prior to use. Merge files from this repository into project configurations as needed.
 
+## Contents
+
+- [Contributions](#contributions)
+- [Files](#files)
+- [References](#references)
+
+## Contributions
+
+- Open issues or pull requests for bug reports, feature requests, or improvements.
+- Create branches from `dev` and target `dev` when opening a pull request.
+- Consider starring the repository if it is useful!
+
 ## Files
 
 ### `.config/opencode/tools/btca.ts`
@@ -17,21 +29,12 @@ Allow OpenCode agents to invoke btca commands as standard command-line tools (fo
 
 > Warning: The `btca ask` tool may call itself recursively and cause an infinite loop. Report occurrences at [this issue](https://github.com/koichincom/opencode-btca/issues/1). Prevention measures are in progress.
 
-Reference:
-
-- [OpenCode Custom Tools](https://opencode.ai/docs/custom-tools/)
-- [Better Context Commands](https://btca.dev/commands)
-
 ### `.config/opencode/opencode.jsonc`
 
 Set permissions for the btca tools. Explicit permissions are recommended for destructive commands such as `btca clear`, although they are not strictly required.
 
-Reference:
+## References
 
+- [OpenCode Custom Tools](https://opencode.ai/docs/custom-tools/)
+- [Better Context Commands](https://btca.dev/commands)
 - [OpenCode Permissions](https://opencode.ai/docs/permissions/)
-
-## Contributions
-
-- Open issues or pull requests for bug reports, feature requests, or improvements.
-- Create branches from `dev` and target `dev` when opening a pull request.
-- Consider starring the repository if it is useful.
