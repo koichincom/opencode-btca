@@ -13,7 +13,7 @@ async function runBtca(args: string[]): Promise<string> {
 
 export const ask = tool({
     description:
-        "BTCA: ask about a configured resource's source code in natural language to get answers",
+        "BTCA: ask about a configured resource's source code in natural language",
     args: {
         resources: tool.schema
             .array(tool.schema.string())
@@ -129,7 +129,11 @@ export const config_resources_add = tool({
 export const config_resources_remove = tool({
     description: "BTCA: remove a resource (updates BTCA config)",
     args: {
-        name: tool.schema.string().describe("BTCA resource name"),
+        name: tool.schema
+            .string()
+            .describe(
+                "BTCA resource name, use `config_resources_list` to see names",
+            ),
     },
     async execute({ name }) {
         return runBtca(["config", "resources", "remove", "--name", name]);
