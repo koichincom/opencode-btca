@@ -1,6 +1,6 @@
 # OpenCode Btca
 
-Scripts and configuration for integrating Better Context (btca) with OpenCode. Better Context and OpenCode must be installed and configured prior to use. Merge files from this repository into project configurations as needed.
+Scripts and configuration for integrating [Better Context (btca)](https://btca.dev) with [OpenCode](https://opencode.ai). Better Context and OpenCode must be installed and configured prior to use. Merge files from this repository into project configurations as needed.
 
 ## Contents
 
