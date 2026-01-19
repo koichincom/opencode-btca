@@ -1,31 +1,30 @@
 # OpenCode Btca
 
-Scripts and configurations for [Better Context (as known as btca)](https://btca.dev) integration for [OpenCode](https://opencode.ai). Make sure to install and set up Better Context and OpenCode first and merge the files in this repository to your own configurations as needed.
+Scripts and configuration for integrating Better Context (also known as btca) with OpenCode. Install and configure Better Context and OpenCode first, then merge the files in this repository into your own configuration as needed.
 
 ## Files
 
-### [opencode/tools/btca.ts](.config/opencode/tools/btca.ts)
+### `.config/opencode/tools/btca.ts`
 
-Let OpenCode agents call btca commands just like any other command line tools (e.g., ls, grep, etc.). Supports the following all the btca CLI commands:
+Allow OpenCode agents to call btca commands like standard command-line tools (for example, `ls` or `grep`). The tool supports the following btca CLI commands:
 
-- `btca ask`: single and multiple sources are supported
-- `btca config model`: the CLI doesn't exit now, so timeout is used as a workaround
+- `btca ask` — supports single and multiple sources
+- `btca config model` — the CLI currently doesn't exit automatically, so a timeout is used as a workaround
 - `btca config resources list`
 - `btca config resources add`
 - `btca config resources remove`
 - `btca clear`
 
-> [!Warning]
-> `btca ask` tool might call the tool recursively and cause infinite loops. Please report anything related in [this issue](https://github.com/koichincom/opencode-btca/issues/1). Prevention is being worked on.
+> Warning: The `btca ask` tool may call itself recursively and cause an infinite loop. If you encounter this, please report it in [this issue](https://github.com/koichincom/opencode-btca/issues/1). We are working on prevention measures.
 
 Reference:
 
 - [OpenCode Custom Tools](https://opencode.ai/docs/custom-tools/)
 - [Better Context Commands](https://btca.dev/commands)
 
-### [opencode/opencode.jsonc](.config/opencode/opencode.jsonc)
+### `.config/opencode/opencode.jsonc`
 
-Set permissions for the btca tools. This isn't strictly necessary, but it's recommended to require explicit permissions for destructive tools like `btca clear`.
+Set permissions for the btca tools. This isn't strictly required, but we recommend requiring explicit permissions for destructive commands such as `btca clear`.
 
 Reference:
 
@@ -34,5 +33,5 @@ Reference:
 ## Contributions
 
 - Please open issues or pull requests for bug reports, feature requests, or improvements.
-- **Create your branch from `dev` branch** and target `dev` branch when opening a pull request.
-- If you find this project useful, consider starring the repository.
+- Create your branch from `dev` and target `dev` when opening a pull request.
+- If you find this project helpful, please consider starring the repository.
