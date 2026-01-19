@@ -1,20 +1,23 @@
 # OpenCode Btca
 
-Scripts and configuration for integrating [Better Context (btca)](https://btca.dev) with [OpenCode](https://opencode.ai). Better Context and OpenCode must be installed and configured prior to use. Merge files from this repository into project configurations as needed.
+Scripts and configuration for integrating [Better Context (btca)](https://btca.dev) with [OpenCode](https://opencode.ai). Better Context and OpenCode must be installed and configured prior to use.
 
 ## Contents
 
-- [Contributions](#contributions)
 - [Files](#files)
+- [Contributions](#contributions)
 
-## Contributions
+## Files
+
+> [!NOTE]
+> Combine the files with your existing configuration. You don't need to use all the files.
 
 ### [`.config/opencode/tools/btca.ts`](.config/opencode/tools/btca.ts)
 
 Allow OpenCode agents to invoke btca commands as standard command-line tools (for example, `ls` or `grep`). The tool supports these btca CLI commands:
 
 - `btca ask` - supports single and multiple sources
-- `btca config model` - the CLI currently does not exit automatically, so a timeout is used as a workaround
+- `btca config model` - the CLI currently does not exit automatically, so a timeout is used as a workaround (Opened a PR in btca to fix this! [#98](https://github.com/davis7dotsh/better-context/pull/98))
 - `btca config resources list`
 - `btca config resources add`
 - `btca config resources remove`
