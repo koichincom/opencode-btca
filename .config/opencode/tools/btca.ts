@@ -12,15 +12,12 @@ async function runBtca(args: string[]): Promise<string> {
 }
 
 export const ask = tool({
-    description:
-        "BTCA: ask about a configured resource's source code in natural language",
+    description: "Ask questions about configured resources using source code",
     args: {
         resources: tool.schema
             .array(tool.schema.string())
-            .describe("BTCA resource names (configured repos or packages)"),
-        question: tool.schema
-            .string()
-            .describe("Question to answer using the resource source"),
+            .describe("Resource names to search"),
+        question: tool.schema.string().describe("Question to answer"),
     },
     async execute({ resources, question }) {
         const resourceFlags = resources.flatMap((r) => ["-r", r]);
@@ -28,47 +25,61 @@ export const ask = tool({
     },
 });
 
-export const config_model = tool({
-    description: "BTCA: set the model provider and model (updates BTCA config)",
+export const model = tool({
+    description: "Set the AI model provider and model",
     args: {
-        provider: tool.schema.string().describe("Model provider id"),
+        provider: tool.schema
+            .string()
+            .describe(
+                "Provider (opencode, openrouter, openai, google, anthropic, github-copilot)",
+            ),
         model: tool.schema.string().describe("Model name"),
     },
-    async execute({ provider, model }) {
-        // btca config model doesn't exit after success, so timeout is used
-        const result =
-            await $`btca config model --provider ${provider} --model ${model}`
-                .quiet()
-                .nothrow()
-                .timeout(5000);
-        const stdout = result.stdout.toString().trim(); // exit code 124 = timeout (expected), 0 = normal exit
-        if (result.exitCode !== 0 && result.exitCode !== 124) {
-            const stderr = result.stderr.toString().trim();
-            return `Error (exit ${result.exitCode}): ${stderr || stdout || "Unknown error"}`;
+    async execute({ provider, model: modelName }) {
+        const timeoutPromise = new Promise((_, reject) =>
+            setTimeout(() => reject(new Error("TIMEOUT")), 5000),
+        );
+
+        try {
+            const result = (await Promise.race([
+                $`btca connect --provider ${provider} --model ${modelName}`
+                    .quiet()
+                    .nothrow(),
+                timeoutPromise,
+            ])) as { exitCode: number; stdout: Uint8Array; stderr: Uint8Array };
+
+            const stdout = result.stdout.toString().trim();
+            if (result.exitCode !== 0) {
+                const stderr = result.stderr.toString().trim();
+                return `Error (exit ${result.exitCode}): ${stderr || stdout || "Unknown error"}`;
+            }
+            return stdout || `Model updated: ${provider}/${modelName}`;
+        } catch (error) {
+            if (error instanceof Error && error.message === "TIMEOUT") {
+                return `Model updated: ${provider}/${modelName}`;
+            }
+            throw error;
         }
-        return stdout || `Model updated: ${provider}/${model}`;
     },
 });
 
-export const config_resources_list = tool({
-    description: "BTCA: list configured resources",
+export const list = tool({
+    description: "List all configured resources",
     args: {},
     async execute() {
-        return runBtca(["config", "resources", "list"]);
+        return runBtca(["resources"]);
     },
 });
 
-export const config_resources_add = tool({
-    description: "BTCA: add a resource (updates BTCA config)",
+export const add = tool({
+    description: "Add a resource (git repo or local directory)",
     args: {
-        name: tool.schema.string().describe("BTCA resource name"),
-        type: tool.schema
-            .enum(["git", "local"])
-            .describe("Resource type: git or local"),
+        name: tool.schema.string().describe("Resource name"),
+        type: tool.schema.enum(["git", "local"]).describe("Resource type"),
         url: tool.schema
             .string()
             .optional()
-            .describe("Git repository URL (required for git type)"),
+            .describe("Git URL (required for git type)"),
         branch: tool.schema
             .string()
             .optional()
@@ -76,45 +87,42 @@ export const config_resources_add = tool({
         path: tool.schema
             .string()
             .optional()
-            .describe("Local filesystem path (required for local type)"),
+            .describe("Local path (required for local type)"),
         searchPaths: tool.schema
             .array(tool.schema.string())
             .optional()
-            .describe("Subdirectories to focus search on"),
+            .describe("Subdirectories to focus search"),
         notes: tool.schema
             .string()
             .optional()
-            .describe("Special notes/hints for the AI about this resource"),
+            .describe("Notes for the AI about this resource"),
     },
     async execute({ name, type, url, branch, path, searchPaths, notes }) {
-        const args: string[] = [
-            "config",
-            "resources",
-            "add",
-            "-n",
-            name,
-            "-t",
-            type,
-        ];
+        let urlOrPath: string;
 
         if (type === "git") {
             if (!url) {
                 return "Error: url is required for git type resources";
             }
-            args.push("-u", url);
-            if (branch) {
-                args.push("-b", branch);
-            }
+            urlOrPath = url;
         } else if (type === "local") {
             if (!path) {
                 return "Error: path is required for local type resources";
             }
-            args.push("--path", path);
+            urlOrPath = path;
+        } else {
+            return "Error: type must be 'git' or 'local'";
+        }
+
+        const args: string[] = ["add", urlOrPath, "-n", name, "-t", type];
+
+        if (branch) {
+            args.push("-b", branch);
         }
 
         if (searchPaths && searchPaths.length > 0) {
             for (const sp of searchPaths) {
-                args.push("--search-path", sp);
+                args.push("-s", sp);
             }
         }
 
@@ -126,22 +134,20 @@ export const config_resources_add = tool({
     },
 });
 
-export const config_resources_remove = tool({
-    description: "BTCA: remove a resource (updates BTCA config)",
+export const remove = tool({
+    description: "Remove a resource",
     args: {
         name: tool.schema
             .string()
-            .describe(
-                "BTCA resource name, use `config_resources_list` to see names",
-            ),
+            .describe("Resource name (use `list` to see names)"),
     },
     async execute({ name }) {
-        return runBtca(["config", "resources", "remove", "--name", name]);
+        return runBtca(["remove", name]);
     },
 });
 
 export const clear = tool({
-    description: "BTCA: clear all locally cached resources (destructive)",
+    description: "Clear all cached resources (destructive)",
     args: {},
     async execute() {
         return runBtca(["clear"]);
