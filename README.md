@@ -16,15 +16,12 @@ Scripts and configuration for integrating [Better Context (btca)](https://btca.d
 
 Allow OpenCode agents to invoke btca commands as standard command-line tools (for example, `ls` or `grep`). The tool supports these btca CLI commands:
 
-- `btca ask` - supports single and multiple sources
-- `btca config model` - the CLI currently does not exit automatically, so a timeout is used as a workaround (Opened a PR in btca to fix this! [#98](https://github.com/davis7dotsh/better-context/pull/98))
-- `btca config resources list`
-- `btca config resources add`
-- `btca config resources remove`
+- `btca ask`: supports single and multiple sources
+- `btca connect`: the CLI does not exit automatically, so a timeout is used as a workaround
+- `btca resources`
+- `btca add`
+- `btca remove`
 - `btca clear`
-
-> [!Warning]
-> The `btca ask` tool may call itself recursively and cause an infinite loop. Report occurrences at [this issue](https://github.com/koichincom/opencode-btca/issues/1). Prevention measures are in progress.
 
 Reference:
 
