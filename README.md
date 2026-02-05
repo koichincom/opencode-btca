@@ -1,6 +1,11 @@
-# OpenCode Btca
-
-Scripts and configuration for integrating [Better Context (btca)](https://btca.dev) with [OpenCode](https://opencode.ai). Better Context and OpenCode must be installed and configured prior to use.
+<div align="center">
+  <h1>OpenCode Btca</h1>
+  <p>
+    Allow <a href="https://opencode.ai" target="_blank" rel="noopener noreferrer">OpenCode</a>
+    to directly get information from the tool's source code by integrating
+    <a href="https://btca.dev" target="_blank" rel="noopener noreferrer">Better Context</a> CLI
+  </p>
+</div>
 
 ## Contents
 
