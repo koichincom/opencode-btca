@@ -7,6 +7,10 @@
   </p>
 </div>
 
+---
+
+Here, I ask an OpenCode agent about the Zig programming language by having it directly inspect the language's codebase.
+
 https://github.com/user-attachments/assets/e5899dc8-f980-4d51-99be-d9953a094aa3
 
 ## Contents
