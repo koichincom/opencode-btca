@@ -11,7 +11,7 @@
 
 Here, I ask an OpenCode agent about the Zig programming language by having it directly inspect the language's codebase.
 
-https://github.com/user-attachments/assets/e5899dc8-f980-4d51-99be-d9953a094aa3
+https://github.com/user-attachments/assets/ad40ff41-4788-4052-8295-101f10552201
 
 ## Contents
 
